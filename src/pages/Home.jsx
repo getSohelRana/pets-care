@@ -7,7 +7,7 @@ const Home = () => {
   const petsData = useLoaderData();
   // console.log(petsData)
 
-  const pets = petsData.slice(0, 6);
+  const pets = petsData.slice(7, 13);
   return (
     <div>
       <Carousel></Carousel>
@@ -16,13 +16,14 @@ const Home = () => {
           <PetCards key={pet.serviceId} pet={pet} />
         ))}
       </div>
-      <div className="container mx-auto flex justify-center items-center mt-10">
-        <Link to="/allpets">
+      <div className="flex justify-center items-center mt-10 animate__animated animate__pulse animate__delay-2s animate__infinite	infinite">
+        <Link to="/services">
           {" "}
-          <a className="btn  bg-primary text-white">
+          <span className="btn  bg-primary text-white ">
             Show All Pets{" "}
-          </a>
+          </span>
         </Link>
+        
       </div>
     </div>
   );
