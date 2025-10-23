@@ -1,8 +1,10 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import siteLogo from "../../assets/logo.png";
 import userIcon from "../../assets/user.png";
+import { AuthContext } from "../../provider/AuthProvider";
 const Navbar = () => {
+  const { user } = use(AuthContext);
   const links = (
     <>
       <NavLink to="/">Home</NavLink>
@@ -66,9 +68,9 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="dropdown-content menu bg-base-00 rounded-box z-1 w-52 p-2 shadow-sm"
+              className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-sm"
             >
-              <p>Display Name here..</p>
+              <p>{user && user.email}</p>
             </ul>
           </div>
           <Link

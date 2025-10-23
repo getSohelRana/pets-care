@@ -7,6 +7,7 @@ import PetDetails from "../components/PetDetails/PetDetails";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import AuthLayout from "../layout/AuthLayout";
+import Loading from "../pages/Loading";
 
 const router = createBrowserRouter([
   {
@@ -17,11 +18,13 @@ const router = createBrowserRouter([
         index: true,
         Component: Home,
         loader: () => fetch('/pets.json'),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/services",
         Component: Services,
-         loader: () => fetch('/pets.json'),
+        loader: () => fetch('/pets.json'),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/profile",

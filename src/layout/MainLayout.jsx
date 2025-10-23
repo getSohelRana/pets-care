@@ -1,18 +1,19 @@
 import React from "react";
 
-import { Outlet } from "react-router";
+import { Outlet, useNavigation } from "react-router";
 import Navbar from "../components/header/Navbar";
 import Footer from "../components/footer/Footer";
-
+import Loading from "../pages/Loading";
 
 const Layout = () => {
+  const { state } = useNavigation();
   return (
     <div className="flex flex-col min-h-screen">
-      <header >
+      <header>
         <Navbar></Navbar>
       </header>
       <main className="flex-1 bg-base-100 container mx-auto py-10">
-        <Outlet></Outlet>
+        {state == "loading" ? <Loading></Loading> : <Outlet></Outlet>}
       </main>
       <footer>
         <Footer></Footer>
