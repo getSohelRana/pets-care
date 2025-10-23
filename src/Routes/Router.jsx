@@ -5,6 +5,8 @@ import Services from "../pages/Services";
 import Profile from "../pages/Profile";
 import PetDetails from "../components/PetDetails/PetDetails";
 import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import AuthLayout from "../layout/AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -33,11 +35,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/auth",
-    element: <p>auth lay out </p>,
+    Component: AuthLayout,
     children: [
       {
         path : '/auth/login',
         Component: Login
+      },
+      {
+        path : '/auth/signup',
+        Component: Signup,
       }
     ]
   },

@@ -72,8 +72,8 @@ const Navbar = () => {
             </ul>
           </div>
           <Link
-            to="/auth/login"
-            className="btn px-5 shadow-none bg-primary hover:bg-base-100 rounded-3xl"
+            to="/auth/signup"
+            className=" btn px-5 shadow-none bg-primary hover:bg-base-100 rounded-3xl animate__animated animate__pulse animate__delay-2s animate__infinite	infinite"
           >
             Sign Up
           </Link>
