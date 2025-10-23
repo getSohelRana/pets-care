@@ -1,13 +1,12 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 //import slider img
-import slide1Img from "../../assets/slide1.jpg";
-import slide2Img from "../../assets/slide2.jpg";
-import slide3Img from "../../assets/slide3.jpg";
-import slide4Img from "../../assets/slide4.jpg";
-import slide5Img from "../../assets/slide5.jpg";
-import slide6Img from "../../assets/slide6.jpg";
+import slide1Img from "../assets/slide1.jpg";
+import slide2Img from "../assets/slide2.jpg";
+import slide3Img from "../assets/slide3.jpg";
+import slide4Img from "../assets/slide4.jpg";
+import slide5Img from "../assets/slide5.jpg";
+import slide6Img from "../assets/slide6.jpg";
 
 // Import Swiper styles
 import "swiper/css";
