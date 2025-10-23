@@ -1,21 +1,27 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #71C9CE;
-  --color-secondary: #A6E3E9;
-  --color-base-100: #E3FDFD;
-  --color-base-200: #CBF1F5;
+  --color-primary: #71c9ce;
+  --color-secondary: #a6e3e9;
+  --color-base-100: #e3fdfd;
+  --color-base-200: #cbf1f5;
 }
+
+/* Custom Utilities */
 @layer utilities {
   .active {
-    @apply text-gray-700 font-semibold ;
+    @apply text-gray-700 font-semibold;
   }
- 
-
-  
-  
+  .carousel-container {
+    @apply relative min-h-40 sm:min-h-60 md:min-h-90;
+  }
+  .carousel-content {
+    @apply absolute inset-0 bg-black/55 flex items-center justify-center;
+  }
+  .carousel-title {
+    @apply text-white sm:text-xl md:text-2xl text-center w-4/6  lg:w-3/6;
+  }
 }
