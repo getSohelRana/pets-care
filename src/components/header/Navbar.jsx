@@ -73,12 +73,18 @@ const Navbar = () => {
               <p>{user && user.email}</p>
             </ul>
           </div>
-          <Link
-            to="/auth/signup"
-            className=" btn px-5 shadow-none bg-primary hover:bg-base-100 rounded-3xl animate__animated animate__pulse animate__delay-2s animate__infinite	infinite"
-          >
-            Sign Up
-          </Link>
+          {user ? (
+            <button className=" btn px-5 shadow-none bg-primary hover:bg-base-100 rounded-3xl animate__animated animate__pulse animate__delay-2s animate__infinite	infinite">
+              Sing Out
+            </button>
+          ) : (
+            <Link
+              to="/auth/signup"
+              className=" btn px-5 shadow-none bg-primary hover:bg-base-100 rounded-3xl animate__animated animate__pulse animate__delay-2s animate__infinite	infinite"
+            >
+              Sign Up
+            </Link>
+          )}
         </div>
       </div>
     </nav>

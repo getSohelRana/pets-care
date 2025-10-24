@@ -1,9 +1,10 @@
 import React, { use } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Signup = () => {
-  const {createUser} = use(AuthContext)
+  const { createUser, setUser } = use(AuthContext);
   const handleSignup = (e) => {
     e.preventDefault();
 
@@ -14,15 +15,25 @@ const Signup = () => {
     const checked = e.target.elements.terms.checked;
     console.log(name, photo, email, password, checked);
 
+    // check empty
+    if (!name || !photo || !email || !password) {
+      toast.error("Oops! Some fields are missing. Please fill them in.");
+      return;
+    }
+
     createUser(email, password)
-    .then(res => {
-      const user = res.user;
-      console.log(user)
-    }).catch((error) => {
-    const errorMessage = error.message;
-    console.log(errorMessage , error.code)
-    
-  });
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+        setUser(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+      });
+    toast.success("Account created successfully!");
+
+    e.target.reset();
   };
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -79,7 +90,9 @@ const Signup = () => {
                 Accept Terms & Conditions
               </label>
 
-              <button className="btn btn-neutral mt-4" type="submit">Sign Up</button>
+              <button className="btn btn-neutral mt-4" type="submit">
+                Sign Up
+              </button>
 
               <p className="text-center font-semibold mt-2">
                 Already have an account?{" "}
@@ -91,6 +104,32 @@ const Signup = () => {
           </form>
         </div>
       </div>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 3000,
+          removeDelay: 100,
+          style: {
+            background: "#ff9e9e",
+            color: "#fff",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            iconTheme: {
+              primary: "green",
+              secondary: "white",
+            },
+            style: {
+              background: "#7cf2c3",
+              color: "#f5f5f5",
+            },
+          },
+        }}
+      />
     </div>
   );
 };
