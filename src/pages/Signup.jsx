@@ -1,38 +1,98 @@
-import React, { use } from "react";
+import { use, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
-import toast, { Toaster } from "react-hot-toast";
 
 const Signup = () => {
   const { createUser, setUser } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [togglePassword, setTogglePassword] = useState(false);
   const handleSignup = (e) => {
     e.preventDefault();
 
+    {
+      /* Name data validation */
+    }
     const name = e.target.name.value.trim();
+    if (name.length < 5) {
+      setNameError("Name must be more than 5 characters");
+      return;
+    } else {
+      setNameError("");
+    }
     const photo = e.target.photo.value.trim();
     const email = e.target.email.value.trim();
-    const password = e.target.password.value.trim();
-    const checked = e.target.elements.terms.checked;
-    console.log(name, photo, email, password, checked);
-
-    // check empty
-    if (!name || !photo || !email || !password) {
-      toast.error("Oops! Some fields are missing. Please fill them in.");
+    {
+      /*check photo and email empty */
+    }
+    if (!photo || !email) {
+      toast.error("🤦‍♂️ Oops! Some fields are missing. Please fill them in.");
       return;
     }
 
-    
+    {
+      /* pasword data validation */
+    }
+    const password = e.target.password.value.trim();
+    if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long.");
+      return;
+    } else {
+      setPasswordError("");
+    }
+    if (!/[A-Z]/.test(password)) {
+      setPasswordError("Password must contain at least one uppercase letter.");
+      return;
+    } else {
+      setPasswordError("");
+    }
+
+    if (!/[a-z]/.test(password)) {
+      setPasswordError("Password must contain at least one lowercase letter.");
+      return;
+    } else {
+      setPasswordError("");
+    }
+
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      setPasswordError("Password must contain at least one special character.");
+      return;
+    } else {
+      setPasswordError("");
+    }
+
+    console.log(name, photo, email, password);
+
     createUser(email, password)
       .then((res) => {
         const user = res.user;
         setUser(user);
         toast.success("Account created successfully!");
+
+        // redireact to home page after sign up
         navigate(location.state || "/");
       })
       .catch((error) => {
-        toast.error(error.message);
+        // Firebase error code
+        const errorCode = error.code;
+
+        //Custom error message replace custom message
+        const errorMessages = {
+          "auth/email-already-in-use":
+            "This email is already registered. Please log in instead.",
+          "auth/invalid-email":
+            "Invalid email address. Please enter a valid one.",
+        };
+
+        // Show custom error message
+        const customMessage =
+          errorMessages[errorCode] ||
+          "Something went wrong. Please try again later.";
+        toast.error(customMessage);
       });
 
     e.target.reset();
@@ -54,7 +114,7 @@ const Signup = () => {
                 className="input"
                 placeholder="Name"
               />
-
+              <small className="text-error">{nameError}</small>
               {/* Photo URL */}
               <label className="label">Photo URL</label>
               <input
@@ -75,24 +135,23 @@ const Signup = () => {
 
               {/* Password */}
               <label className="label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="input"
-                placeholder="Password"
-              />
-
-              {/* Terms */}
-              <label className="label">
+              <div className="relative">
                 <input
-                  name="terms"
-                  type="checkbox"
-                  className="checkbox checked:text-primary checked:border-primary"
+                  type= {togglePassword ? 'text' : 'password'}
+                  name="password"
+                  className="input"
+                  placeholder="Password"
                 />
-                Accept Terms & Conditions
-              </label>
+                <button onClick={()=> setTogglePassword(!togglePassword)} type="button" className="btn absolute top-0 right-4 z-1">
+                  {togglePassword ? <IoEyeOutline size={20} /> : <IoEyeOffOutline size={20} />}
+                </button>
+              </div>
+              <small className="text-error">{passwordError}</small>
 
-              <button className="btn btn-neutral mt-4" type="submit">
+              <button
+                className="btn btn-neutral mt-4 bg-primary text-white text-xl"
+                type="submit"
+              >
                 Sign Up
               </button>
 
