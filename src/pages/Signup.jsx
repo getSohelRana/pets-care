@@ -1,7 +1,9 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Signup = () => {
+  const {createUser} = use(AuthContext)
   const handleSignup = (e) => {
     e.preventDefault();
 
@@ -11,6 +13,16 @@ const Signup = () => {
     const password = e.target.password.value.trim();
     const checked = e.target.elements.terms.checked;
     console.log(name, photo, email, password, checked);
+
+    createUser(email, password)
+    .then(res => {
+      const user = res.user;
+      console.log(user)
+    }).catch((error) => {
+    const errorMessage = error.message;
+    console.log(errorMessage , error.code)
+    
+  });
   };
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -67,7 +79,7 @@ const Signup = () => {
                 Accept Terms & Conditions
               </label>
 
-              <button className="btn btn-neutral mt-4">Sign Up</button>
+              <button className="btn btn-neutral mt-4" type="submit">Sign Up</button>
 
               <p className="text-center font-semibold mt-2">
                 Already have an account?{" "}

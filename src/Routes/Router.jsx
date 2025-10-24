@@ -8,6 +8,8 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import AuthLayout from "../layout/AuthLayout";
 import Loading from "../pages/Loading";
+import PetsAll from "../components/PetDetails/PetsAll";
+import PetsAllCards from "../components/PetDetails/PetsAllCards";
 
 const router = createBrowserRouter([
   {
@@ -17,22 +19,28 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch('/pets.json'),
+        loader: () => fetch("/pets.json"),
         hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "/services/petsDetails/:serviceId",
+        Component: PetDetails,
       },
       {
         path: "/services",
         Component: Services,
-        loader: () => fetch('/pets.json'),
+        loader: () => fetch("/pets.json"),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "/pets_all_details",
+        Component: Services,
+        loader: () => fetch("/pets.json"),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/profile",
         Component: Profile,
-      },
-      {
-        path : '/petsDetails/:serviceId',
-        Component: PetDetails,
       },
     ],
   },
@@ -41,18 +49,18 @@ const router = createBrowserRouter([
     Component: AuthLayout,
     children: [
       {
-        path : '/auth/login',
-        Component: Login
+        path: "/auth/login",
+        Component: Login,
       },
       {
-        path : '/auth/signup',
+        path: "/auth/signup",
         Component: Signup,
-      }
-    ]
+      },
+    ],
   },
   {
-    path : '*',
-    element: <p>errro page</p>
-  }
+    path: "*",
+    element: <p>errro page</p>,
+  },
 ]);
 export default router;

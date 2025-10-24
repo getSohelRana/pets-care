@@ -28,7 +28,7 @@ const PetCards = ({ pet }) => {
           </div>
           <div className="badge  text-xl p-4"> <span className="text-pink-500" ><FaRegStar  /></span> {rating}</div>
         </div>
-        <Link to={`/petsDetails/${serviceId}`} className="btn mt-2">
+        <Link to={`/services/petsDetails/${serviceId}`} className="btn mt-2">
           View Details
         </Link>
       </div>
