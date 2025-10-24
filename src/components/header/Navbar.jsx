@@ -84,6 +84,7 @@ const Navbar = () => {
               className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-sm"
             >
               <p>{user && user.email}</p>
+              <Link to="/profile">View Profile</Link>
             </ul>
           </div>
           {user ? (
