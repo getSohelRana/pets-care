@@ -74,16 +74,16 @@ const Navbar = () => {
           <div className="dropdown dropdown-hover">
             <div tabIndex={0} role="button">
               <img
-                className="w-10 h-10 object-cover"
-                src={userIcon}
+                className="w-10 h-10 object-cover rounded-full"
+                src={`${user ? user.photoURL : userIcon}`}
                 alt="user_icon"
               />
             </div>
             <ul
               tabIndex="-1"
-              className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-sm"
+              className="dropdown-content menu bg-white rounded-box z-9 w-52 p-2 shadow-sm "
             >
-              <p>{user && user.email}</p>
+              <p>{user && user.displayName}</p>
               <Link to="/profile">View Profile</Link>
             </ul>
           </div>

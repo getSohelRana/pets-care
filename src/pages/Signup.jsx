@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Signup = () => {
-  const { createUser, setUser } = use(AuthContext);
+  const { createUser, setUser, updateUserProfile } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [nameError, setNameError] = useState("");
@@ -65,16 +65,29 @@ const Signup = () => {
       setPasswordError("");
     }
 
-    console.log(name, photo, email, password);
+    // console.log(name, photo, email, password);
 
     createUser(email, password)
       .then((res) => {
         const user = res.user;
-        setUser(user);
+        console.log(user);
+        // update profile data
+        updateUserProfile({
+          displayName : name,
+          photoURL : photo,
+          email: email,
+        }).then(()=> {
+          setUser({...user, displayName: name, photoURL: photo, email: email});
+          // redireact to home page after sign up
+        navigate(location.state || "/");
+        }).catch((error) => {
+          console.log(error)
+          setUser(user)
+        })
+        
         toast.success("Account created successfully!");
 
-        // redireact to home page after sign up
-        navigate(location.state || "/");
+        
       })
       .catch((error) => {
         // Firebase error code

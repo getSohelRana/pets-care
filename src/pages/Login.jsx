@@ -1,14 +1,16 @@
-import React, { use, useState } from "react";
+import React, { use, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 const Login = () => {
-  const { signIn, logInWithGoogle } = use(AuthContext);
+  const { signIn, logInWithGoogle, resetPassword } = use(AuthContext);
   const [togglePassword, setTogglePassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const emailRef = useRef();
+
   // console.log(location)
   const handleLogin = (e) => {
     e.preventDefault();
@@ -46,6 +48,24 @@ const Login = () => {
         toast.error(error.message);
       });
   };
+  // handle password reset
+  const handlePasswordReset = () => {
+    const email = emailRef.current.value.trim();
+    //check empty email fields
+    if (!email) {
+      toast.error("Please enter your email first.");
+      return;
+    }
+    console.log(email);
+    resetPassword(email)
+      .then(() => {
+        toast.success("Password reset email sent! Please check your inbox.");
+      })
+      .catch((error) => {
+        const errorMessages = error.message;
+        console.log(errorMessages);
+      });
+  };
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-base-200 w-full max-w-sm shrink-0 shadow-xl">
@@ -58,6 +78,7 @@ const Login = () => {
               {/* Email */}
               <label className="label">Email</label>
               <input
+                ref={emailRef}
                 type="email"
                 name="email"
                 className="input"
@@ -87,7 +108,9 @@ const Login = () => {
 
               {/* Reset password*/}
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <a onClick={handlePasswordReset} className="link link-hover">
+                  Forgot password?
+                </a>
               </div>
 
               <button className="btn btn-neutral mt-4 bg-secondary text-white text-xl ">
