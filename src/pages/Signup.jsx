@@ -105,7 +105,7 @@ const Signup = () => {
         </div>
       </div>
       <Toaster
-        position="top-right"
+        position="left-bottom"
         toastOptions={{
           // Define default options
           className: "",

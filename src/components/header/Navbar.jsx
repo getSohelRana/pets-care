@@ -1,10 +1,23 @@
 import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import siteLogo from "../../assets/logo.png";
+import { LiaSignOutAltSolid } from "react-icons/lia";
+
 import userIcon from "../../assets/user.png";
 import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
+
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, singOut } = use(AuthContext);
+  const handleSingOut = () => {
+    singOut()
+      .then(() => {
+        toast.success("sing Successfully done");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   const links = (
     <>
       <NavLink to="/">Home</NavLink>
@@ -74,7 +87,11 @@ const Navbar = () => {
             </ul>
           </div>
           {user ? (
-            <button className=" btn px-5 shadow-none bg-primary hover:bg-base-100 rounded-3xl animate__animated animate__pulse animate__delay-2s animate__infinite	infinite">
+            <button
+              onClick={handleSingOut}
+              className=" btn px-5 shadow-none bg-red-200 hover:bg-base-100 rounded-3xl animate__animated animate__pulse animate__delay-2s animate__infinite	infinite"
+            >
+              <LiaSignOutAltSolid size={20}/>
               Sing Out
             </button>
           ) : (
