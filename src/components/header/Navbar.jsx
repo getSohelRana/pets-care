@@ -12,7 +12,7 @@ const Navbar = () => {
   const handleSingOut = () => {
     singOut()
       .then(() => {
-        toast.success("sing Successfully done");
+        toast.success("Signed out done");
       })
       .catch((error) => {
         toast.error(error.message);

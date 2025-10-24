@@ -37,7 +37,7 @@ const PetDetails = () => {
     slotsAvailable,
   } = singlePet || {};
   return (
-    <div className="card bg-white shadow-sm">
+    <div className="card bg-white shadow-sm w-4/6 mx-auto">
       <figure>
         <img
           className="w-full h-100 object-cover"
@@ -60,7 +60,7 @@ const PetDetails = () => {
               <FaRegStar />
             </span>{" "}
             {rating}
-						<div className=" text-xl p-4">Available: {slotsAvailable} </div>
+						<div className=" text-xl p-4">Stock: {slotsAvailable} </div>
           </div>
 					
         </div>

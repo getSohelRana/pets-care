@@ -113,7 +113,7 @@ const Signup = () => {
           removeDelay: 100,
           style: {
             background: "#ff9e9e",
-            color: "#fff",
+            color: "#000",
           },
 
           // Default options for specific types
@@ -125,7 +125,7 @@ const Signup = () => {
             },
             style: {
               background: "#7cf2c3",
-              color: "#f5f5f5",
+              color: "#000",
             },
           },
         }}

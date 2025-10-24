@@ -10,6 +10,7 @@ import AuthLayout from "../layout/AuthLayout";
 import Loading from "../pages/Loading";
 import PetsAll from "../components/PetDetails/PetsAll";
 import PetsAllCards from "../components/PetDetails/PetsAllCards";
+import PrivateRoutes from "../provider/PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -23,8 +24,10 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
-        path: "/services/petsDetails/:serviceId",
-        Component: PetDetails,
+        path: "/petsDetails/:serviceId",
+        element: <PrivateRoutes>
+          <PetDetails></PetDetails>
+        </PrivateRoutes>
       },
       {
         path: "/services",

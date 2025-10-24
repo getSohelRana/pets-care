@@ -1,10 +1,35 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { use } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-    const handleLogin= (e) => {
-        e.preventDefault()
+  const {signIn} = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  // console.log(location)
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value.trim();
+    const password = e.target.password.value.trim();
+
+     // check empty
+    if (!email || !password) {
+      toast.error("Oops! Some fields are missing. Please fill them in.");
+      return;
     }
+
+    signIn(email, password)
+    .then((res)=> {
+      const user = res.user;
+      console.log(user)
+      navigate(`${location.state ? location.state : '/'}`)
+    }).catch((error)=>{
+      toast.error(error.message)
+    })
+    toast.success("Successfully login!");
+    e.target.reset()
+  };
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-base-200 w-full max-w-sm shrink-0 shadow-xl">
@@ -49,6 +74,32 @@ const Login = () => {
           </form>
         </div>
       </div>
+      <Toaster
+        position="left-bottom"
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 3000,
+          removeDelay: 100,
+          style: {
+            background: "#ff9e9e",
+            color: "#000",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            iconTheme: {
+              primary: "green",
+              secondary: "#000",
+            },
+            style: {
+              background: "#7cf2c3",
+              color: "#000",
+            },
+          },
+        }}
+      />
     </div>
   );
 };
