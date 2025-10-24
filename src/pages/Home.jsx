@@ -1,7 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Carousel from "../components/Carousel";
 import PetCards from "../components/petCards/PetCards";
 import { Link, useLoaderData } from "react-router";
+import PetsCare from "../components/PetsCare";
+import MeetsExpert from "../components/MeetsExpert ";
+import Loading from "./Loading";
 
 const Home = () => {
   const petsData = useLoaderData();
@@ -19,11 +22,14 @@ const Home = () => {
       <div className="flex justify-center items-center mt-10 animate__animated animate__pulse animate__delay-2s animate__infinite	infinite">
         <Link to="/pets_all_details">
           {" "}
-          <span className="btn  bg-primary text-white ">
-            Show All Pets{" "}
-          </span>
+          <span className="btn  bg-primary text-white ">Show All Pets </span>
         </Link>
-        
+      </div>
+      <PetsCare></PetsCare>
+      <div className="mt-15 mb-5">
+        <Suspense fallback= {"Loading vet exparts"}>
+          <MeetsExpert></MeetsExpert>
+        </Suspense>
       </div>
     </div>
   );

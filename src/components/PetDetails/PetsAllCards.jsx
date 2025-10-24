@@ -1,10 +1,11 @@
 import React from "react";
 import { FaRegStar } from "react-icons/fa";
+import { Link } from "react-router";
 
 const PetsAllCards = ({ pet }) => {
 //   console.log(pet);
 
-  const { serviceName, price, rating, image, category, description } =
+  const { serviceName, price, rating, image, category, description, serviceId } =
     pet || {};
   return (
     <div className="card bg-white shadow-sm">
@@ -30,7 +31,11 @@ const PetsAllCards = ({ pet }) => {
             </span>{" "}
             {rating}
           </div>
+          
         </div>
+         <Link to={`/petsDetails/${serviceId}`} className="btn mt-2">
+          View Details
+        </Link>
       </div>
     </div>
   );

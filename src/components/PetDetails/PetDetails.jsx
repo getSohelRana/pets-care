@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { FaRegStar } from "react-icons/fa";
+import { PiUserCircleGearBold } from "react-icons/pi";
 import { RiMailSendLine } from "react-icons/ri";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 const PetDetails = () => {
   const { serviceId } = useParams();
@@ -36,6 +38,12 @@ const PetDetails = () => {
     providerEmail,
     slotsAvailable,
   } = singlePet || {};
+  // handle book now
+  const handleBook = (e) => {
+    e.preventDefault();
+    toast.success("Successfully Booked Confirm!");
+    e.target.reset();
+  };
   return (
     <div className="card bg-white shadow-sm w-4/6 mx-auto">
       <figure>
@@ -60,12 +68,15 @@ const PetDetails = () => {
               <FaRegStar />
             </span>{" "}
             {rating}
-						<div className=" text-xl p-4">Stock: {slotsAvailable} </div>
+            <div className=" text-xl p-4">Stock: {slotsAvailable} </div>
           </div>
-					
         </div>
         <div className="card-actions justify-between items-center">
-          <div className="badge  text-xl p-4">{providerName}</div>
+          <div className="badge  text-xl p-4">
+            {" "}
+            <PiUserCircleGearBold size={25} className="text-pink-500" />{" "}
+            {providerName}
+          </div>
           <div className="badge  text-xl p-4">
             {" "}
             <span className="text-pink-500">
@@ -75,6 +86,44 @@ const PetDetails = () => {
           </div>
         </div>
       </div>
+      {/* book now area */}
+      <div className=" my-10">
+        <form className="flex flex-col gap-4 justify-center items-center"  onSubmit={handleBook}>
+          <input
+            className="input w-3/6 text-[17px] focus:outline-primary focus:border-0"
+            type="email"
+            placeholder="mail@site.com"
+            required
+          />
+          <button className="btn btn-primary text-black w-1/6 text-[17px]">Book Now</button>
+        </form>
+      </div>
+      <Toaster
+        position="left-bottom"
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 3000,
+          removeDelay: 100,
+          style: {
+            background: "#ff9e9e",
+            color: "#000",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            iconTheme: {
+              primary: "green",
+              secondary: "#fff",
+            },
+            style: {
+              background: "#7cf2c3",
+              color: "#000",
+            },
+          },
+        }}
+      />
     </div>
   );
 };

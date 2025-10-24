@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Emily Carter",
+    "title": "Veterinary Surgeon",
+    "experience": "10+ Years Experience",
+    "photo": "https://i.ibb.co.com/d0Kvy4Xb/pet-professional-expart-women.jpg",
+    "about": "Dr. Emily is a certified veterinary surgeon specializing in small animal surgery and preventive care. She believes in stress-free treatment and has helped hundreds of pets live healthier lives.",
+    "socials": {
+      "facebook": "https://facebook.com/",
+      "instagram": "https://instagram.com/",
+      "linkedin": "https://linkedin.com/in/"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Dr. Rita H. Lewis",
+    "title": "Animal Nutrition Specialist",
+    "experience": "8+ Years Experience",
+    "photo": "https://i.ibb.co.com/ymZY4hTR/Vet-Checks-Dog.jpg",
+    "about": "Dr. Rajesh focuses on developing personalized diet plans for cats and dogs. His balanced nutrition programs have improved the wellbeing of many pets suffering from obesity and digestion issues.",
+    "socials": {
+      "facebook": "https://facebook.com/",
+      "instagram": "https://instagram.com/",
+      "linkedin": "https://linkedin.com/"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Dr. Sarah Thompson",
+    "title": "Pet Behavior Consultant",
+    "experience": "12+ Years Experience",
+    "photo": "https://i.ibb.co.com/FqVkbJfw/cats-vet-expart.webp",
+    "about": "Dr. Sarah specializes in animal psychology and behavior correction. She helps pet owners understand their pets better and resolve issues like anxiety, aggression, and training difficulties.",
+    "socials": {
+      "facebook": "https://facebook.com/",
+      "instagram": "https://instagram.com/",
+      "linkedin": "https://linkedin.com/"
+    }
+  }
+]
