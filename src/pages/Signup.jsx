@@ -1,10 +1,12 @@
 import React, { use } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 
 const Signup = () => {
   const { createUser, setUser } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleSignup = (e) => {
     e.preventDefault();
 
@@ -21,17 +23,17 @@ const Signup = () => {
       return;
     }
 
+    
     createUser(email, password)
       .then((res) => {
         const user = res.user;
-        console.log(user);
         setUser(user);
+        toast.success("Account created successfully!");
+        navigate(location.state || "/");
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        toast.error(errorMessage);
+        toast.error(error.message);
       });
-    toast.success("Account created successfully!");
 
     e.target.reset();
   };

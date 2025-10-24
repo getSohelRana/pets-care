@@ -14,9 +14,11 @@ const PrivateRoutes = ({ children }) => {
 	if(loading){
 		return <Loading></Loading>
 	}
+	// isUser logged go to private page
   if (user && user?.email) {
     return children;
   }
+	// other wise go to login page
 	return <Navigate state={location.pathname} to='/auth/login'></Navigate>
 };
 
