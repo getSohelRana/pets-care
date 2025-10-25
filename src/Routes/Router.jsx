@@ -11,6 +11,7 @@ import Loading from "../pages/Loading";
 import PetsAll from "../components/PetDetails/PetsAll";
 import PetsAllCards from "../components/PetDetails/PetsAllCards";
 import PrivateRoutes from "../provider/PrivateRoutes";
+import Error404 from "../pages/Error404";
 
 const router = createBrowserRouter([
   {
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <p>errro page</p>,
+    element: <Error404></Error404>,
   },
 ]);
 export default router;

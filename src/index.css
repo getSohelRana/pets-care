@@ -22,6 +22,6 @@
     @apply absolute inset-0 bg-black/55 flex items-center justify-center;
   }
   .carousel-title {
-    @apply text-white sm:text-xl md:text-2xl text-center w-4/6  lg:w-3/6;
+    @apply text-white sm:text-xl md:text-3xl font-semibold text-center w-4/6  lg:w-3/6;
   }
 }

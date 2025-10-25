@@ -46,6 +46,7 @@ const PetDetails = () => {
   };
   return (
     <div className="card bg-white shadow-sm md:w-4/6 mx-auto px-2">
+      <title>Pets details</title>
       <figure>
         <img
           className="w-full md:h-100 object-cover"

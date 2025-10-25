@@ -9,6 +9,7 @@ const PetsAllCards = ({ pet }) => {
     pet || {};
   return (
     <div className="card bg-white shadow-sm">
+      <title>All Pets</title>
       <figure>
         <img
           className="w-full h-50 object-cover"

@@ -44,6 +44,7 @@ const Profile = () => {
   };
   return (
     <div className=" card flex flex-col md:flex-row items-center justify-center gap-10 mt-10 px-2">
+      <title>Pets care | Profile</title>
       {/* Left Section - Profile Image */}
       <div className=" flex flex-col items-center flex-1">
         <img
