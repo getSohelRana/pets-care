@@ -1,16 +1,73 @@
 # React + Vite
+# 🐾 Pets Care — React + Firebase Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+**Live Site:** [https://pets-care-502fb.web.app/](https://pets-care-502fb.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Pets Care is a responsive pet service web application built with **React**, **Firebase**, and **Tailwind CSS**.  
+It provides authentication, secure routing, interactive UI animations, and a smooth user experience for pet lovers and service providers.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Features
 
-## Expanding the ESLint configuration
+✅ **Authentication System**
+- Firebase Email & Password Sign Up  
+- Google Social Login  
+- Reset Password (redirects to Gmail inbox)  
+- Profile Update (Name, PhotoURL, Email)  
+- Password show/hide toggle  
+- Firebase Auth Context for global access  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+✅ **Routing**
+- React Router v6  
+- Private Route Protection for authenticated pages  
+
+✅ **UI & Styling**
+- Tailwind CSS + DaisyUI  
+- Animate.css & AOS Scroll Animations  
+- Swiper Carousel for banners/sliders  
+- Responsive design for all devices  
+
+✅ **User Experience**
+- React Hot Toast for instant notifications  
+- Loading states and smooth transitions  
+
+---
+
+## 🧠 Technologies Used
+
+| Category | Tools / Libraries |
+|-----------|-------------------|
+| **Frontend** | React, React Router DOM |
+| **Styling** | Tailwind CSS, DaisyUI |
+| **Animation** | Animate.css, AOS, Swiper.js |
+| **Backend** | Firebase Authentication |
+| **Notifications** | React Hot Toast |
+| **Hosting** | Firebase Hosting |
+
+---
+
+## 🛠️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/getSohelRana/pets-care.git
+cd pets-care
+
+
+Key Functionalities
+
+🔐 Firebase Auth Context integration
+
+🧭 PrivateRoute protection
+
+📧 Password reset with redirect to Gmail inbox
+
+✨ AOS + Animate.css animations
+
+🖼️ Swiper Carousel banners
+
+🔥 React Hot Toast notifications
+
+🧍 Profile photo & name update system

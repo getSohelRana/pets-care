@@ -1,9 +1,21 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 const PetsCare = () => {
+    // aos init
+    useEffect(() => {
+      Aos.init({
+        duration: 800, 
+        easing: "ease-in-out",
+        delay: 0, 
+        once: true, 
+        mirror: false, 
+        offset: 100, 
+      });
+    }, []);
   return (
     <div className="mt-10 px-2">
-			<h1 className="text-3xl md:text-4xl font-bold text-center mb-10 text-primary">Winter Care Tips for Pets</h1>
+			<h1 className="text-3xl md:text-4xl font-bold text-center mb-10 text-primary" data-aos="fade-up">Winter Care Tips for Pets</h1>
       <div className="join join-vertical bg-white w-full">
         <div className="collapse collapse-arrow join-item border-base-300 border">
           <input type="radio" name="my-accordion-4" defaultChecked />

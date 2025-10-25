@@ -35,8 +35,6 @@ const Login = () => {
       .catch((error) => {
         toast.error(error.message);
       });
-    
-   
   };
 
   // handle sign with goole
@@ -65,8 +63,9 @@ const Login = () => {
     resetPassword(email)
       .then(() => {
         toast.success("Password reset email sent! Please check your inbox.");
-        document.getElementById("password_reseter").close();
-
+        setTimeout(() => {
+          window.location.href = "https://mail.google.com/";
+        }, 2000);
       })
       .catch((error) => {
         toast.error(error.message);
@@ -192,7 +191,7 @@ const Login = () => {
             onSubmit={handlePasswordReset}
             className="flex flex-col gap-4 justify-center items-center"
           >
-            <fieldset className="fieldset w-full max-w-sm" >
+            <fieldset className="fieldset w-full max-w-sm">
               <label className="label">Typer your registered email</label>
               <input
                 ref={emailRef}
@@ -202,7 +201,10 @@ const Login = () => {
               />
             </fieldset>
 
-            <button type="submit" className="btn btn-primary max-w-sm text-gray-700">
+            <button
+              type="submit"
+              className="btn btn-primary max-w-sm text-gray-700"
+            >
               Send Reset Email
             </button>
           </form>
@@ -234,7 +236,6 @@ const Login = () => {
       />
     </div>
   );
-
 };
 
 export default Login;

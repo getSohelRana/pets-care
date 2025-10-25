@@ -1,14 +1,26 @@
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 const vetsPromise = fetch("../vetExparts.json").then((res) => res.json());
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 const MeetsExpert = () => {
   const vets = use(vetsPromise);
-  console.log(vets);
+  // console.log(vets);
+  // aos init
+      useEffect(() => {
+        Aos.init({
+          duration: 800, 
+          easing: "ease-in-out",
+          delay: 0, 
+          once: true, 
+          mirror: false, 
+          offset: 100, 
+        });
+      }, []);
   return (
   
       <div className="py-12 px-5 md:px-2 ">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-primary">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-primary" data-aos="fade-up">
           Meet Our Veterinary Experts
         </h2>
 

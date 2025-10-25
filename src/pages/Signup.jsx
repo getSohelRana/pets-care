@@ -70,7 +70,7 @@ const Signup = () => {
     createUser(email, password)
       .then((res) => {
         const user = res.user;
-        console.log(user);
+        // console.log(user);
         // update profile data
         updateUserProfile({
           displayName : name,

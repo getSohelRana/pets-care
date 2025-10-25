@@ -36,7 +36,8 @@ const Profile = () => {
         toast.success("Profile updated successfully done!✔");
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
+        // console.log(error);
         setUser(user);
       });
     // reset form value
