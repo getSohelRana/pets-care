@@ -45,16 +45,16 @@ const PetDetails = () => {
     e.target.reset();
   };
   return (
-    <div className="card bg-white shadow-sm w-4/6 mx-auto">
+    <div className="card bg-white shadow-sm md:w-4/6 mx-auto px-2">
       <figure>
         <img
-          className="w-full h-100 object-cover"
+          className="w-full md:h-100 object-cover"
           src={image}
           alt={serviceName}
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title text-2xl">
+        <h2 className="card-title  md:text-2xl">
           {serviceName}
           <div className="badge badge-primary text-pink-500">{category}</div>
         </h2>
@@ -74,8 +74,8 @@ const PetDetails = () => {
         <div className="card-actions justify-between items-center">
           <div className="badge  text-xl p-4">
             {" "}
-            <PiUserCircleGearBold size={25} className="text-pink-500" />{" "}
-            {providerName}
+          <PiUserCircleGearBold size={25} className="text-pink-500" />{" "}
+          {providerName}
           </div>
           <div className="badge  text-xl p-4">
             {" "}
@@ -90,12 +90,12 @@ const PetDetails = () => {
       <div className=" my-10">
         <form className="flex flex-col gap-4 justify-center items-center"  onSubmit={handleBook}>
           <input
-            className="input w-3/6 text-[17px] focus:outline-primary focus:border-0"
+            className="input w-4/6 text-[17px] focus:outline-primary focus:border-0"
             type="email"
             placeholder="mail@site.com"
             required
           />
-          <button className="btn btn-primary text-black w-1/6 text-[17px]">Book Now</button>
+          <button className="btn btn-primary text-black w-2/6 md:w-[220px] sm:text-[17px]">Book Now</button>
         </form>
       </div>
       <Toaster
