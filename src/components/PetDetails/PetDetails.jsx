@@ -45,11 +45,11 @@ const PetDetails = () => {
     e.target.reset();
   };
   return (
-    <div className="card bg-white shadow-sm md:w-4/6 mx-auto px-2">
+    <div className="card bg-white shadow-sm md:w-4/6 mx-auto ">
       <title>Pets details</title>
-      <figure>
+      <figure className="p-5 ">
         <img
-          className="w-full md:h-100 object-cover"
+          className="w-full md:h-100 object-cover rounded-xl"
           src={image}
           alt={serviceName}
         />

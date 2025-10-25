@@ -19,21 +19,24 @@ const Login = () => {
 
     // check empty
     if (!email || !password) {
-      toast.error("Oops! Some fields are missing. Please fill them in.");
+      toast.error("Oops! Some fields are missing. Please fill in both fields.");
       return;
     }
-
+    // user sign in
     signIn(email, password)
       .then((res) => {
         const user = res.user;
-        console.log(user);
+        //show success messeage
+        toast.success(`Welcome back, ${user.displayName || "user"}!`);
+        // console.log(user);
         navigate(`${location.state ? location.state : "/"}`);
+        e.target.reset();
       })
       .catch((error) => {
         toast.error(error.message);
       });
-    toast.success("Successfully login!");
-    e.target.reset();
+    
+   
   };
 
   // handle sign with goole
@@ -49,30 +52,37 @@ const Login = () => {
       });
   };
   // handle password reset
-  const handlePasswordReset = () => {
-    const email = emailRef.current.value.trim();
+  const handlePasswordReset = (e) => {
+    e.preventDefault();
+    const email = emailRef.current?.value.trim();
     //check empty email fields
     if (!email) {
       toast.error("Please enter your email first.");
       return;
     }
-    console.log(email);
+    // console.log(email);
+    //user reset password firebase
     resetPassword(email)
       .then(() => {
         toast.success("Password reset email sent! Please check your inbox.");
+        document.getElementById("password_reseter").close();
+
       })
       .catch((error) => {
-        const errorMessages = error.message;
-        console.log(errorMessages);
+        toast.error(error.message);
+        // const errorMessages = error.message;
+        // console.log(errorMessages);
       });
   };
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="card bg-base-200 w-full max-w-sm shrink-0 shadow-xl">
-        <h1 className="text-center py-4 text-2xl border-b-2 border-base-200 font-semibold">
-          LogIn your account
+    <div className="flex justify-center items-center min-h-screen bg-base-100 px-3">
+      <div className="card bg-base-200 w-full max-w-sm shadow-xl">
+        <h1 className="text-center py-4 text-2xl font-semibold border-b border-base-300">
+          Log in to your account
         </h1>
+
         <div className="card-body bg-white">
+          {/* Login Form */}
           <form onSubmit={handleLogin}>
             <fieldset className="fieldset">
               {/* Email */}
@@ -82,21 +92,22 @@ const Login = () => {
                 type="email"
                 name="email"
                 className="input"
-                placeholder="Email"
+                placeholder="Enter your email"
               />
 
               {/* Password */}
+              <label className="label">Password</label>
               <div className="relative">
                 <input
                   type={togglePassword ? "text" : "password"}
                   name="password"
-                  className="input"
-                  placeholder="Password"
+                  className="input w-full pr-12"
+                  placeholder="Enter your password"
                 />
                 <button
-                  onClick={() => setTogglePassword(!togglePassword)}
                   type="button"
-                  className="btn absolute top-0 right-4 z-1"
+                  onClick={() => setTogglePassword(!togglePassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
                 >
                   {togglePassword ? (
                     <IoEyeOutline size={20} />
@@ -106,29 +117,37 @@ const Login = () => {
                 </button>
               </div>
 
-              {/* Reset password*/}
-              <div>
-                <a onClick={handlePasswordReset} className="link link-hover">
+              {/* Forgot password */}
+              <div className="mt-2">
+                <a
+                  onClick={() =>
+                    document.getElementById("password_reseter").showModal()
+                  }
+                  className="link link-hover text-sm text-primary"
+                >
                   Forgot password?
                 </a>
               </div>
 
-              <button className="btn btn-neutral mt-4 bg-secondary text-white text-xl ">
+              {/* Login Button */}
+              <button className="btn btn-neutral mt-4 bg-secondary text-xl text-gray-700 w-full">
                 Log In
               </button>
 
-              <p className="text-center font-semibold mt-2">
+              {/* Signup Redirect */}
+              <p className="text-center mt-3 text-sm">
                 Don’t have an account?{" "}
-                <span className="text-primary link-hover">
-                  <Link to="/auth/signup">Sign Up</Link>
-                </span>
+                <Link to="/auth/signup" className="text-primary link-hover">
+                  Sign Up
+                </Link>
               </p>
             </fieldset>
           </form>
-          {/* Google */}
+
+          {/* Google Login */}
           <button
             onClick={handleGoogleLogin}
-            className="btn bg-base-100 text-black border-[#e5e5e5] mt-5"
+            className="btn bg-base-100 border border-gray-300 text-black mt-5 w-full"
           >
             <svg
               aria-label="Google logo"
@@ -138,48 +157,74 @@ const Login = () => {
               viewBox="0 0 512 512"
             >
               <g>
-                <path d="m0 0H512V512H0" fill="#fff"></path>
+                <path d="M0 0h512v512H0z" fill="#fff" />
                 <path
                   fill="#34a853"
                   d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                ></path>
+                />
                 <path
                   fill="#4285f4"
-                  d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                ></path>
+                  d="M386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
+                />
                 <path
                   fill="#fbbc02"
-                  d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                ></path>
+                  d="M90 341a208 200 0 010-171l63 49q-12 37 0 73"
+                />
                 <path
                   fill="#ea4335"
-                  d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                ></path>
+                  d="M153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
+                />
               </g>
             </svg>
             Login with Google
           </button>
         </div>
       </div>
+
+      {/* Reset Password Modal */}
+      <dialog
+        id="password_reseter"
+        className="modal modal-bottom sm:modal-middle px-2"
+      >
+        <div className="modal-box mx-auto">
+          <h3 className="font-semibold text-lg mb-3">Reset Your Password</h3>
+          <form
+            onSubmit={handlePasswordReset}
+            className="flex flex-col gap-4 justify-center items-center"
+          >
+            <fieldset className="fieldset w-full max-w-sm" >
+              <label className="label">Typer your registered email</label>
+              <input
+                ref={emailRef}
+                type="email"
+                className="input w-full text-[17px] focus:outline-primary focus:border-0"
+                placeholder="Enter your email"
+              />
+            </fieldset>
+
+            <button type="submit" className="btn btn-primary max-w-sm text-gray-700">
+              Send Reset Email
+            </button>
+          </form>
+
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
+      {/* Toaster */}
       <Toaster
-        position="left-bottom"
+        position="bottom-left"
         toastOptions={{
-          // Define default options
-          className: "",
           duration: 3000,
-          removeDelay: 100,
           style: {
             background: "#ff9e9e",
             color: "#000",
           },
-
-          // Default options for specific types
           success: {
-            duration: 3000,
-            iconTheme: {
-              primary: "green",
-              secondary: "#000",
-            },
             style: {
               background: "#7cf2c3",
               color: "#000",
@@ -189,6 +234,7 @@ const Login = () => {
       />
     </div>
   );
+
 };
 
 export default Login;
