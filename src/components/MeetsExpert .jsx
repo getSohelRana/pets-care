@@ -7,7 +7,7 @@ const MeetsExpert = () => {
   console.log(vets);
   return (
   
-      <div className="py-12 px-5 md:px-16 ">
+      <div className="py-12 px-5 md:px-2 ">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-primary">
           Meet Our Veterinary Experts
         </h2>
@@ -15,7 +15,7 @@ const MeetsExpert = () => {
         {vets.length === 0 ? (
           <p className="text-center text-gray-500">Loading expert data...</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 animate__slideInUp animate__slow-2s animate__repeat-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
             {vets.map((vet) => (
               <div
                 key={vet.id}
@@ -36,7 +36,7 @@ const MeetsExpert = () => {
                     {vet.name}
                   </h2>
                   <p className="text-sm text-gray-500">{vet.title}</p>
-                  <p className="text-gray-600 text-sm italic mb-3">
+                  <p className="text-pink-400 text-sm italic mb-3">
                     {vet.experience}
                   </p>
                   <p className="text-gray-700 text-sm mb-4 text-justify">{vet.about}</p>

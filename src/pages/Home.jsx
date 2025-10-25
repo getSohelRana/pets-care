@@ -12,9 +12,9 @@ const Home = () => {
 
   const pets = petsData.slice(7, 13);
   return (
-    <div>
+    <div className="overflow-hidden">
       <Carousel></Carousel>
-      <div className="grid grid-cols-3 gap-4 mt-10 px-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 px-2">
         {pets.map((pet) => (
           <PetCards key={pet.serviceId} pet={pet} />
         ))}
@@ -27,7 +27,7 @@ const Home = () => {
       </div>
       <PetsCare></PetsCare>
       <div className="mt-15 mb-5">
-        <Suspense fallback= {"Loading vet exparts"}>
+        <Suspense fallback= {<p>Loading vets exparts</p>}>
           <MeetsExpert></MeetsExpert>
         </Suspense>
       </div>

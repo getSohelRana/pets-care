@@ -23,6 +23,7 @@ const Carousel = () => {
           delay: 3000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
+          
         }}
         modules={[Pagination, Autoplay]}
         className="mySwiper w-full h-40 sm:h-60 md:h-80"
