@@ -64,7 +64,7 @@ const Login = () => {
     resetPassword(email)
       .then(() => {
         toast.success("Password reset email sent! Please check your inbox.");
-        document.getElementById("password_reseter").close();
+        window.location.href = "https://mail.google.com/";
       })
       .catch((error) => {
         toast.error(error.message);
