@@ -11,7 +11,6 @@ const Login = () => {
   const navigate = useNavigate();
   const emailRef = useRef();
 
-
   // console.log(location)
   const handleLogin = (e) => {
     e.preventDefault();
@@ -64,7 +63,9 @@ const Login = () => {
     resetPassword(email)
       .then(() => {
         toast.success("Password reset email sent! Please check your inbox.");
-        window.location.href = "https://mail.google.com/";
+        setTimeout(() => {
+          window.location.href = "https://mail.google.com/";
+        }, 2000);
       })
       .catch((error) => {
         toast.error(error.message);
